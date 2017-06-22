@@ -32,10 +32,11 @@ export default class MDCSnackbarFoundation extends MDCFoundation {
       removeClass: (/* className: string */) => {},
       setAriaHidden: () => {},
       unsetAriaHidden: () => {},
-      setMessageText: (/* message: string */) => {},
-      setActionText: (/* actionText: string */) => {},
       setActionAriaHidden: () => {},
       unsetActionAriaHidden: () => {},
+      setActionText: (/* actionText: string */) => {},
+      setMessageText: (/* message: string */) => {},
+      setFocus: () => {},
       visibilityIsHidden: () => /* boolean */ false,
       registerBlurHandler: (/* handler: EventListener */) => {},
       deregisterBlurHandler: (/* handler: EventListener */) => {},
@@ -102,7 +103,7 @@ export default class MDCSnackbarFoundation extends MDCFoundation {
 
   destroy() {
     this.adapter_.deregisterActionClickHandler(this.actionClickHandler_);
-    this.adapter_.deregisterBlurHandler(this.focusHandler_);
+    this.adapter_.deregisterBlurHandler(this.blurHandler_);
     this.adapter_.deregisterVisibilityChangeHandler(this.visibilitychangeHandler_);
     ['touchstart', 'mousedown', 'focus'].forEach((evtType) => {
       this.adapter_.deregisterCapturedInteractionHandler(evtType, this.interactionHandler_);
